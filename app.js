@@ -49,7 +49,7 @@ var Trial = function(isFast = false) {
               break;
           case 1:
               this.state(2);
-              this.stateLabel("Click at 6m Mark");
+              this.stateLabel("Click at 8m Mark");
               break;
           case 2:
               this.state(3);
