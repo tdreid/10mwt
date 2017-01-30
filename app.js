@@ -6,12 +6,10 @@ var Tests = function(tests = []) {
   this.displayJSON = ko.observable(true); //set to true for debugging
 
   function sorter(a, b) {
-    console.log(a.id, b.id);
     return a.id() > b.id();
   }
 
   function finder(t) {
-    console.log(t.id(), self.newId());
     return t.id() === self.newId();
   }
 
@@ -41,6 +39,23 @@ var Trial = function(isFast = false) {
   this.isComplete = ko.observable(false);
   this.s = ko.observable(0);
   this.s2 = ko.observable(0);
+  this.stateLabel = ko.observable("Start Timer");
+  this.state = ko.observable(0);
+  this.nextState = function(){
+      switch(this.state()){
+          case 0:
+              this.state(1);
+              this.stateLabel("Click at 2m Mark");
+              break;
+          case 1:
+              this.state(2);
+              this.stateLabel("Click at 6m Mark");
+              break;
+          case 2:
+              this.state(3);
+              break;
+      }
+  }
   this.timeToAmbulate = ko.computed(function() {
     var ret = self.s2() - self.s();
     if (ret > 0) {
@@ -52,5 +67,5 @@ var Trial = function(isFast = false) {
 }
 
 ko.applyBindings(new Tests());
-
+    
 }

@@ -10,6 +10,10 @@
   cursor: pointer;
 }
 
+.text-timer {
+ text-align: center;   
+}
+
 #app {
   width: 85%;
   border-style: solid;

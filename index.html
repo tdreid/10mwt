@@ -5,7 +5,6 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
   <script type="text/javascript" src="./app.js"></script>
-  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
@@ -36,13 +35,16 @@
             <li data-bind="ifnot: isComplete">
               <div>
                 t@2m:
-                <input size="2" data-bind="value: s"> s t@8m:
-                <input size="2" data-bind="value: s2"> s
+                <input size="2" class="text-timer" data-bind="value: s"> s t@8m:
+                <input size="2" class="text-timer" data-bind="value: s2"> s
                 <span data-bind="if: timeToAmbulate"><span data-bind="text: timeToAmbulate"> </span> s. to ambulate 6 m.</span>
               </div>
               <div>
-                <button class="btn-subtle" data-bind="">Start Timer</button>
+                <span data-bind="if: state() < 3"><button class="btn-subtle" data-bind="click: nextState, text: stateLabel">Start Timer</button></span>
               </div>
+              <div>
+                  <input type="checkbox" data-bind="checked: isFast"><span>Check here for trial at pt's fastest pace.</span>
+              </div>                            
             </li>
             <span data-bind="if: isComplete"><li><span data-bind="text: timeToAmbulate"> </span>s to ambulate 6 m</li>
         </span>
