@@ -1,0 +1,38 @@
+.btn-subtle {
+  height: 10px;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  margin: 0!important;
+  font: inherit;
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.text-timer {
+ text-align: center;   
+}
+
+#app {
+  width: 85%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 25px;
+}
+
+#debug {
+  width: 85%;
+  border-width: 3px;
+  border-color: gray;
+  border-radius: 3px;
+  margin: 25px;
+}
+
+#viewmodel-json {
+  width: 100%;
+  background-color: #ccf
+}
