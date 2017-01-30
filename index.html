@@ -30,13 +30,13 @@
         <li>
           <i class="fa-li fa fa-caret-right"></i>
           <span data-bind="text: id"> </span>
-          <button class="btn-subtle" data-bind="click: addTrial, enable: trials().length &lt; 3">Add Trial</button>
+          <button class="btn-subtle" data-bind="click: addTrial, if: trials().length < 3">Add Trial</button>
           <ol data-bind="foreach: trials">
             <li data-bind="ifnot: isComplete">
               <div>
                 t@2m:
-                <input size="2" class="text-timer" data-bind="value: s"> s t@8m:
-                <input size="2" class="text-timer" data-bind="value: s2"> s
+                <input size="2" class="text-timer" data-bind="value: s"> s. t@8m:
+                <input size="2" class="text-timer" data-bind="value: s2"> s.
                 <span data-bind="if: timeToAmbulate"><span data-bind="text: timeToAmbulate"> </span> s. to ambulate 6 m.</span>
               </div>
               <div>
@@ -46,7 +46,7 @@
                   <input type="checkbox" data-bind="checked: isFast"><span>Check here for trial at pt's fastest pace.</span>
               </div>                            
             </li>
-            <span data-bind="if: isComplete"><li><span data-bind="text: timeToAmbulate"> </span>s to ambulate 6 m</li>
+            <span data-bind="if: isComplete"><li><span data-bind="text: timeToAmbulate"> </span>s to ambulate 6 m.</li>
         </span>
         </ol>
         </li>
