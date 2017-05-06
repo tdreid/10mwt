@@ -13,9 +13,9 @@ Stopwatch = function(listener, resolution, countUp) {
 	this.stopTime = 0;
 	this.totalElapsed = 0; // * elapsed number of ms in total
 	this.started = false;
-	this.listener = (listener != undefined ? listener : null); // * function to receive onTick events
+	this.listener = (listener !== undefined ? listener : null); // * function to receive onTick events
 	this.countUp = typeof countUp !== 'undefined' ? countUp : true;
-	this.tickResolution = (resolution != undefined ? resolution : 500); // * how long between each tick in milliseconds
+	this.tickResolution = (resolution !== undefined ? resolution : 500); // * how long between each tick in milliseconds
 	this.tickInterval = null;
 	
 	// * pretty static vars
@@ -38,7 +38,7 @@ Stopwatch.prototype.stop = function() {
 		this.started = false;
 		var elapsed = this.stopTime - this.startTime;
 		this.totalElapsed += elapsed;
-		if(this.tickInterval != null)
+		if(this.tickInterval !== null)
 			clearInterval(this.tickInterval);
 	}
 	return this.getElapsed();
@@ -51,7 +51,7 @@ Stopwatch.prototype.reset = function() {
 	if (!this.countUp) {
 		this.totalElapsed = this.initialElapsed;
 	}
-	if (this.tickInterval != null) {
+	if (this.tickInterval !== null) {
 		var delegate = function(that, method) {
 			return function() {
 				return method.call(that);
@@ -78,11 +78,11 @@ Stopwatch.prototype.getElapsed = function() {
 		elapsed = Math.max(2*this.initialElapsed - elapsed, 0);
 	}
 
-	var hours = parseInt(elapsed / this.onehour);
+	var hours = parseInt(elapsed / this.onehour, 10);
 	elapsed %= this.onehour;
-	var mins = parseInt(elapsed / this.onemin);
+	var mins = parseInt(elapsed / this.onemin, 10);
 	elapsed %= this.onemin;
-	var secs = parseInt(elapsed / this.onesec);
+	var secs = parseInt(elapsed / this.onesec, 10);
 	var ms = elapsed % this.onesec;
 	
 	return {
@@ -102,7 +102,7 @@ Stopwatch.prototype.setElapsed = function(hours, mins, secs) {
 	this.totalElapsed += this.countUp ? secs  * this.onesec : (secs+1)*this.onesec-1;
 	this.totalElapsed = Math.max(this.totalElapsed, 0); // * No negative numbers
 	this.initialElapsed = this.totalElapsed;
-	if (this.tickInterval != null) {
+	if (this.tickInterval !== null) {
 		var delegate = function(that, method) {
 			return function() {
 				return method.call(that);
@@ -128,7 +128,7 @@ Stopwatch.prototype.setListener = function(listener) {
 }
 // * triggered every <resolution> ms
 Stopwatch.prototype.onTick = function() {
-	if(this.listener != null) {
+	if(this.listener !== null) {
 		this.listener(this);
 	}
 }
