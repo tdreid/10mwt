@@ -17,7 +17,7 @@ var Tests = function(tests = []) {
   this.displayJSON = ko.observable(false); 
 
   this.addTest = function() {
-    if ((this.newId() != "") && !(_.find(this.tests(), finder))) {
+    if ((this.newId() !== "") && !(_.find(this.tests(), finder))) {
       this.tests.push(new Test(this.newId(),[new Trial(),new Trial(),new Trial()]));
       this.tests.sort(sorter);
       this.newId("");
@@ -43,7 +43,7 @@ var Test = function(id = "New Test", trials = []) {
           return trial.s() > 0 && trial.s2() > 0;
       }
       
-      if (self.trials().length == 3 && self.trials().every(isReady)){
+      if (self.trials().length === 3 && self.trials().every(isReady)){
         return (self.trials().reduce(function(a,b){return a + parseFloat(b.timeToAmbulate())},0) / self.trials().length).toFixed(2);
       } else {
           return "";
@@ -52,7 +52,7 @@ var Test = function(id = "New Test", trials = []) {
   
   this.averageGaitSpeed = ko.computed(function(){
      if(self.averageTimeToAmbulate()){
-         return (6 / self.averageTimeToAmbulate()).toFixed(2);;
+         return (6 / self.averageTimeToAmbulate()).toFixed(2);
      } else {
          return "";
      }
@@ -60,7 +60,7 @@ var Test = function(id = "New Test", trials = []) {
   
   this.isReady = ko.computed(function(){
      return self.trials().every(function(trial){
-         return trial.state() == 3;
+         return trial.state() === 3;
      })
   });
 
@@ -84,7 +84,7 @@ var Trial = function(isFast = false) {
      var seconds = elapsed.minutes * 60 + elapsed.seconds;
      var milliseconds = elapsed.milliseconds;
      var totalTime = seconds + (milliseconds/1000);
-     self.state()==1 ? self.s(totalTime.toFixed(2)) : self.s2(totalTime.toFixed(2));
+     self.state()===1 ? self.s(totalTime.toFixed(2)) : self.s2(totalTime.toFixed(2));
   }
   
   this.nextState = function(){
