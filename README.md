@@ -1,5 +1,4 @@
 # 10mwt
-[![Code Climate](https://codeclimate.com/github/tdreid/10mwt/badges/gpa.svg)](https://codeclimate.com/github/tdreid/10mwt)
 ## A simple free tool to conduct the [Timed 10 Meter Walk Test](http://www.physio-pedia.com/10_Metre_Walk_Test) in a browser or on a mobile device.
 ## [Here's a working example.](https://tdreid.github.io/10mwt/)
 ## This is what it looks like:
