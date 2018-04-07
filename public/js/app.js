@@ -2,7 +2,7 @@ window.onload = function() {
   var Tests = function(tests = []) {
     var self = this;
     this.tests = ko.observableArray(tests);
-    this.newId = ko.observable("");
+    this.newId = ko.observable('');
     this.showMessage = ko.observable(false);
 
     function sorter(a, b) {
@@ -16,14 +16,14 @@ window.onload = function() {
     this.displayJSON = ko.observable(false);
 
     this.addTest = function() {
-      if (this.newId() !== "" && !_.find(this.tests(), finder)) {
+      if (this.newId() !== '' && !_.find(this.tests(), finder)) {
         this.tests.push(
           new Test(this.newId(), [new Trial(), new Trial(), new Trial()])
         );
         this.tests.sort(sorter);
-        this.newId("");
+        this.newId('');
       } else {
-        this.showMessage("Blanks and duplicates are not allowed.");
+        this.showMessage('Blanks and duplicates are not allowed.');
         setTimeout(
           function() {
             this.showMessage(false);
@@ -34,13 +34,13 @@ window.onload = function() {
     }.bind(this);
   };
 
-  var Test = function(id = "New Test", trials = []) {
+  var Test = function(id = 'New Test', trials = []) {
     var self = this;
     this.id = ko.observable(id);
     this.trials = ko.observableArray(trials);
     this.isFast = ko.observable(false);
     this.gaitText = ko.computed(function() {
-      return self.isFast() ? "fastest possible" : "comfortable";
+      return self.isFast() ? 'fastest possible' : 'comfortable';
     });
 
     this.averageTimeToAmbulate = ko.computed(function() {
@@ -49,11 +49,13 @@ window.onload = function() {
       }
 
       if (self.trials().length === 3 && self.trials().every(isReady)) {
-        return (self.trials().reduce(function(a, b) {
-          return a + parseFloat(b.timeToAmbulate());
-        }, 0) / self.trials().length).toFixed(2);
+        return (
+          self.trials().reduce(function(a, b) {
+            return a + parseFloat(b.timeToAmbulate());
+          }, 0) / self.trials().length
+        ).toFixed(2);
       } else {
-        return "";
+        return '';
       }
     });
 
@@ -61,7 +63,7 @@ window.onload = function() {
       if (self.averageTimeToAmbulate()) {
         return (6 / self.averageTimeToAmbulate()).toFixed(2);
       } else {
-        return "";
+        return '';
       }
     });
 
@@ -78,9 +80,9 @@ window.onload = function() {
 
   var Trial = function(isFast = false) {
     var self = this;
-    this.s = ko.observable("");
-    this.s2 = ko.observable("");
-    this.stateLabel = ko.observable("Start Timer");
+    this.s = ko.observable('');
+    this.s2 = ko.observable('');
+    this.stateLabel = ko.observable('Start Timer');
     this.state = ko.observable(0);
 
     var stopwatch = new Stopwatch(update, 10);
@@ -100,11 +102,11 @@ window.onload = function() {
         case 0:
           stopwatch.start();
           this.state(1);
-          this.stateLabel("Click at 2m Mark");
+          this.stateLabel('Click at 2m Mark');
           break;
         case 1:
           this.state(2);
-          this.stateLabel("Click at 8m Mark");
+          this.stateLabel('Click at 8m Mark');
           break;
         case 2:
           stopwatch.stop();
@@ -118,16 +120,16 @@ window.onload = function() {
       if (ret > 0) {
         return ret.toFixed(2);
       } else {
-        return "";
+        return '';
       }
     });
   };
 
   var tests = new Tests();
   ko.applyBindings(tests);
-  var clip = new Clipboard(".button-primary");
-  clip.on("success", function(e) {
-    tests.showMessage("Narrative copied.");
+  var clip = new Clipboard('.button-primary');
+  clip.on('success', function(e) {
+    tests.showMessage('Narrative copied.');
     setTimeout(function() {
       tests.showMessage(false);
     }, 750);
