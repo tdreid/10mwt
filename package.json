@@ -1,6 +1,6 @@
 {
   "name": "10mwt",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -13,5 +13,29 @@
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
     "serve-favicon": "~2.4.5"
-  }
+  },
+  "description": "## A simple free tool to conduct the [Timed 10 Meter Walk Test](http://www.physio-pedia.com/10_Metre_Walk_Test) in a browser or on a mobile device. ## [Click here for a working example.](https://ten-mwt.herokuapp.com/) ## This is what it looks like: <p align=\"center\">   <img src=\"https://inaptpi.firebaseapp.com/img-for-10mwt/10mwt-screenshot.png\"> </p>",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdreid/10mwt.git"
+  },
+  "keywords": [
+    "movement",
+    "speed",
+    "mobility",
+    "gait",
+    "function",
+    "ABI",
+    "CP",
+    "amputation",
+    "TBI"
+  ],
+  "author": "Trevor Reid <trevor.d.reid@gmail.com> (http://tdreid.github.io)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tdreid/10mwt/issues"
+  },
+  "homepage": "https://github.com/tdreid/10mwt#readme"
 }
