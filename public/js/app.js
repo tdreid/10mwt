@@ -127,7 +127,7 @@ window.onload = function() {
 
   var tests = new Tests();
   ko.applyBindings(tests);
-  var clip = new Clipboard('.button-primary');
+  var clip = new Clipboard('.btn-copy');
   clip.on('success', function(e) {
     tests.showMessage('Narrative copied.');
     setTimeout(function() {
