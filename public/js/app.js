@@ -134,4 +134,6 @@ window.onload = function() {
       tests.showMessage(false);
     }, 750);
   });
+  $('#bullpen').css('visibility', 'visible');
+  $('#main').css('visibility', 'visible');
 };

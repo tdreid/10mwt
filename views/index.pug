@@ -24,7 +24,7 @@ html
             input(placeholder="Enter patient name or id" class="form-control" data-bind="value: newId,  valueUpdate: 'afterkeydown'")
           div(class="row")
             button(type="submit" class="btn btn-primary" id="add-button" data-bind="click:addTest") Add Patient
-    div(class="container-fluid" style="margin-top:30px")
+    div(class="container-fluid" id="main" style="margin-top:30px; visibility: hidden;")
       div(class="row" data-bind="foreach: tests")
         div(class="col")
           div(class="card" style="width: 18rem; margin-top: 10px;")
@@ -56,5 +56,6 @@ html
                   <button class="btn btn-primary btn-sm btn-block"><i class="fa fa-paper-plane fa-lg"></i> Post Narrative</button>
                 </div>                
               </div>
-    div(id="snackbar" data-bind="visible: $root.showMessage")
-      span(data-bind="text: $root.showMessage")
+    span(id="bullpen" style="visibility: hidden")  
+      div(id="snackbar" data-bind="visible: $root.showMessage")
+        span(data-bind="text: $root.showMessage")
