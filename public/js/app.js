@@ -1,3 +1,4 @@
+/* global ko _ Stopwatch Clipboard $ */
 window.onload = function() {
   var Tests = function(tests = []) {
     var self = this;
