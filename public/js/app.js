@@ -1,3 +1,4 @@
+/* global ko _ Stopwatch Clipboard $ */
 window.onload = function() {
   var Tests = function(tests = []) {
     var self = this;
@@ -134,4 +135,6 @@ window.onload = function() {
       tests.showMessage(false);
     }, 750);
   });
+  $('#bullpen').css('visibility', 'visible');
+  $('#main').css('visibility', 'visible');
 };
