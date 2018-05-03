@@ -19,12 +19,19 @@ html
   body(id="app")
     nav(class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top")
       span(class="navbar-brand") Timed 10-Meter Walk Test
-      form
+      form(class="mr-auto")
         div(class="row")
           div(class="col")
             input(placeholder="Enter patient name or id" class="form-control" data-bind="value: newId,  valueUpdate: 'afterkeydown'")
           div(class="row")
             button(type="submit" class="btn btn-primary" id="add-button" data-bind="click:addTest") Add Patient
+      button(class="navbar-toggler" data-toggle="collapse" data-target="#menu")
+        span(class="navbar-toggler-icon")
+      div(class="collapse navbar-collapse" id="menu")
+        ul(class="navbar-nav ml-auto")
+          li(class="navbar-item")
+            a(class="nav-link" href="#") Save
+            a(class="nav-link" href="#") Clear
     div(class="container-fluid" id="main" style="margin-top:30px; visibility: hidden;")
       div(class="row" data-bind="foreach: tests")
         div(class="col")
