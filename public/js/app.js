@@ -1,4 +1,4 @@
-/* global ko _ Stopwatch Clipboard $ */
+/* global ko _ Stopwatch Clipboard $ localforage */
 window.onload = function() {
   var Tests = function(tests = []) {
     var self = this;
