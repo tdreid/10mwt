@@ -10,20 +10,31 @@ html
     script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js")
     script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js")
     script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.1/localforage.min.js")
     script(type="text/javascript" src="./js/stopwatch.js")
     script(type="text/javascript" src="./js/app.js" defer="defer")    
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
     link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
     link(rel="stylesheet" type="text/css" href="./css/style.css")
   body(id="app")
-    nav(class="navbar navbar-expand-md navbar-dark bg-dark fixed-top")
+    nav(class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top")
       span(class="navbar-brand") Timed 10-Meter Walk Test
-      form
+      form(class="mr-auto")
         div(class="row")
           div(class="col")
             input(placeholder="Enter patient name or id" class="form-control" data-bind="value: newId,  valueUpdate: 'afterkeydown'")
           div(class="row")
             button(type="submit" class="btn btn-primary" id="add-button" data-bind="click:addTest") Add Patient
+      button(class="navbar-toggler" data-toggle="collapse" data-target="#menu")
+        span(class="navbar-toggler-icon")
+      div(class="collapse navbar-collapse" id="menu")
+        ul(class="navbar-nav ml-auto")
+          li(class="navbar-item")
+            a(class="nav-link" href="#" data-bind="click:saveViewModel") Save
+          li(class="navbar-item")  
+            a(class="nav-link" href="#" data-bind="click:loadViewModel") Load
+          li(class="navbar-item")  
+            a(class="nav-link" href="#" data-bind="click:clearViewModel") Clear
     div(class="container-fluid" id="main" style="margin-top:30px; visibility: hidden;")
       div(class="row" data-bind="foreach: tests")
         div(class="col")

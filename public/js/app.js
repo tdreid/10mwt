@@ -1,4 +1,4 @@
-/* global ko _ Stopwatch Clipboard $ */
+/* global ko _ Stopwatch Clipboard $ localforage */
 window.onload = function() {
   var Tests = function(tests = []) {
     var self = this;
@@ -33,6 +33,37 @@ window.onload = function() {
         );
       }
     }.bind(this);
+
+    this.saveViewModel = function() {
+      var flattenedTests = self.tests().map(t => {
+        return ko.toJSON(t);
+      });
+      localforage.setItem('10mwt', flattenedTests);
+    };
+
+    this.loadViewModel = function() {
+      localforage.getItem('10mwt').then(savedtests => {
+        self.clearViewModel();
+        savedtests.forEach(item => {
+          item = JSON.parse(item);
+          let savedtrials = item.trials.map(savedTrial => {
+            let newTrial = new Trial();
+
+            newTrial.s(savedTrial.s);
+            newTrial.s2(savedTrial.s2);
+            newTrial.state(savedTrial.state);
+            newTrial.stateLabel(savedTrial.stateLabel);
+
+            return newTrial;
+          });
+          self.tests.push(new Test(item.id, savedtrials));
+        });
+      });
+    };
+
+    this.clearViewModel = function() {
+      self.tests([]);
+    };
   };
 
   var Test = function(id = 'New Test', trials = []) {
