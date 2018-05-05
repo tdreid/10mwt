@@ -30,8 +30,11 @@ html
       div(class="collapse navbar-collapse" id="menu")
         ul(class="navbar-nav ml-auto")
           li(class="navbar-item")
-            a(class="nav-link" href="#") Save
-            a(class="nav-link" href="#") Clear
+            a(class="nav-link" href="#" data-bind="click:saveViewModel") Save
+          li(class="navbar-item")  
+            a(class="nav-link" href="#" data-bind="click:loadViewModel") Load
+          li(class="navbar-item")  
+            a(class="nav-link" href="#" data-bind="click:clearViewModel") Clear
     div(class="container-fluid" id="main" style="margin-top:30px; visibility: hidden;")
       div(class="row" data-bind="foreach: tests")
         div(class="col")
