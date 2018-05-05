@@ -43,6 +43,7 @@ window.onload = function() {
 
     this.loadViewModel = function() {
       localforage.getItem('10mwt').then(savedtests => {
+        self.clearViewModel();
         savedtests.forEach(item => {
           item = JSON.parse(item);
           let savedtrials = item.trials.map(savedTrial => {
