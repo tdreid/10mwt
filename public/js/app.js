@@ -5,6 +5,7 @@ window.onload = function() {
     this.tests = ko.observableArray(tests);
     this.newId = ko.observable('');
     this.showMessage = ko.observable(false);
+    this.adjustTopMargin = ko.observable(false);
 
     function sorter(a, b) {
       return a.id() > b.id();
@@ -63,6 +64,11 @@ window.onload = function() {
 
     this.clearViewModel = function() {
       self.tests([]);
+    };
+
+    this.togglePush = function() {
+      self.adjustTopMargin(!$('#menu').hasClass('show'));
+      console.log(self.adjustTopMargin());
     };
   };
 
