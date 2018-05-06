@@ -35,6 +35,16 @@ ul {
   width: 136px;
 }
 
+.push{
+    transition: transform 0.5s;
+    transform: translate(0px, 100px);
+}
+
+.recover{
+  transition: transform 0.5s;
+  transform: translate(0px, 0px);
+}
+
 #add-button {
   margin-left: 4px;  
 }
