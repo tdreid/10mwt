@@ -25,7 +25,7 @@ html
             input(placeholder="Enter patient name or id" class="form-control" data-bind="value: newId,  valueUpdate: 'afterkeydown'")
           div(class="row")
             button(type="submit" class="btn btn-primary" id="add-button" data-bind="click:addTest") Add Patient
-      button(class="navbar-toggler" data-toggle="collapse" data-target="#menu")
+      button(class="navbar-toggler" data-toggle="collapse" data-target="#menu" data-bind="click:togglePush")
         span(class="navbar-toggler-icon")
       div(class="collapse navbar-collapse" id="menu")
         ul(class="navbar-nav ml-auto")
@@ -35,7 +35,7 @@ html
             a(class="nav-link" href="#" data-bind="click:loadViewModel") Load
           li(class="navbar-item")  
             a(class="nav-link" href="#" data-bind="click:clearViewModel") Clear
-    div(class="container-fluid" id="main" style="margin-top:30px; visibility: hidden;")
+    div(class="container-fluid" id="main" style="margin-top:30px; visibility: hidden;", data-bind="attr: { class: adjustTopMargin() ? 'push' : 'recover' }")
       div(class="row" data-bind="foreach: tests")
         div(class="col")
           div(class="card" style="width: 18rem; margin-top: 10px;")
