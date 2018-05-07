@@ -68,7 +68,6 @@ window.onload = function() {
 
     this.togglePush = function() {
       self.adjustTopMargin(!$('#menu').hasClass('show'));
-      console.log(self.adjustTopMargin());
     };
   };
 
