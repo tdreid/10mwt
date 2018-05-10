@@ -35,6 +35,11 @@ window.onload = function() {
       }
     }.bind(this);
 
+    this.removeTest = function(t) {
+        let newArr = thisViewModel.tests().filter(o => o.id !== t.id);
+        thisViewModel.tests(newArr);
+    };
+
     this.saveViewModel = () => {
       let flattenedTests = thisViewModel.tests().map(t => {
         return ko.toJSON(t);

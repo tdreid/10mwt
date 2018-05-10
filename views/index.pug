@@ -41,8 +41,11 @@ html
       div(class="row" data-bind="foreach: tests")
         div(class="col")
           div(class="card" style="width: 18rem; margin-top: 10px;")
-            div(class="card-body")
+            div(class="card-header")
+              button(type="button" class="close" data-bind="click: $root.removeTest")
+                span &times;
               h5(class="card-title" data-bind="text: id")
+            div(class="card-body")
               div(data-bind="foreach: trials")
                 div.
                   <div class="row">
