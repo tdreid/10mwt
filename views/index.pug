@@ -62,12 +62,14 @@ html
               <div class="text-result" data-bind="if: isReady">Average time to ambulate 6 m: <span data-bind="text: averageTimeToAmbulate"> </span> s</div>
               <div data-bind="if: isReady" class="text-narrative">
                 <span class="text-narrative-msg">When assessed with the 10-meter walk test, <span data-bind="text: id">the patient</span> had a <span data-bind="text: gaitText"> </span> walking speed of <span data-bind="text: averageGaitSpeed"> </span> m/s today.</span>
-                <div class="btn-action btn-block">
-                  <button class="btn btn-dark btn-sm btn-copy" data-bind="attr:{'data-clipboard-text': 'When assessed with the 10-meter walk test, ' + id() + ' had a ' + gaitText() + ' walking speed of ' + averageGaitSpeed() + ' m/s today.'}"><i class="fa fa-clipboard fa-lg"></i> Copy Narrative</button>
-                </div>
-                <div class="btn-action">
-                  <button class="btn btn-primary btn-sm btn-block" data-bind="click: postNarrative"><i class="fa fa-paper-plane fa-lg" ></i> Post Narrative</button>
-                </div>                
+                <center>
+                  <div class="btn-action btn-block">
+                    <button class="btn btn-dark btn-sm btn-copy" data-bind="attr:{'data-clipboard-text': 'When assessed with the 10-meter walk test, ' + id() + ' had a ' + gaitText() + ' walking speed of ' + averageGaitSpeed() + ' m/s today.'}"><i class="fa fa-clipboard fa-lg"></i> Copy Narrative</button>
+                  </div>
+                  <div class="btn-action">
+                    <button class="btn btn-primary btn-sm btn-block" data-bind="click: postNarrative"><i class="fa fa-paper-plane fa-lg" ></i> Post Narrative</button>
+                  </div>  
+                </center>
               </div>
       div(class="row" data-bind="visible: showJSON")
         div(class="col-6")
