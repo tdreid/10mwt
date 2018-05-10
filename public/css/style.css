@@ -37,7 +37,7 @@ ul {
 
 .push{
     transition: transform 0.5s;
-    transform: translate(0px, 100px);
+    transform: translate(0px, 120px);
 }
 
 .recover{
@@ -61,4 +61,12 @@ ul {
   position: fixed;
   z-index: 1;
   top: 60px;
+}
+
+#debug-textarea {
+  margin-top: 12px;
+}
+
+#label-for-debug {
+  padding-top: 3px;
 }
