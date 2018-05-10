@@ -62,3 +62,11 @@ ul {
   z-index: 1;
   top: 60px;
 }
+
+#debug-textarea {
+  margin-top: 12px;
+}
+
+#label-for-debug {
+  padding-top: 3px;
+}
