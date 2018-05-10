@@ -37,7 +37,7 @@ ul {
 
 .push{
     transition: transform 0.5s;
-    transform: translate(0px, 100px);
+    transform: translate(0px, 120px);
 }
 
 .recover{
