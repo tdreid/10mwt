@@ -4,65 +4,92 @@ html
     meta(http-equiv="content-type" content="text/html; charset=UTF-8")
     meta(name="robots" content="noindex, nofollow")
     meta(name="googlebot" content="noindex, nofollow")
-    script(type="text/javascript" src="./js/app.js")
-    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js")
-    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js")
-    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous")
+    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" integrity="sha256-owX7sroiO/O1a7h3a4X29A1g3QgqdNvijRQ7V5TH45M=" crossorigin="anonymous")
+    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.0/underscore-min.js" integrity="sha256-tr4FvXVZp8nkW7TvW4OYA5KWOs7fc2m5B6LN+AOn1VI=" crossorigin="anonymous")
+    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js" integrity="sha256-mYqjlBuTYmeoEFTjuPCrwns2stAp2HOJyXR5X2xjP70=" crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha256-FiZMk1zgTeujzf/+vomWZGZ9r00+xnGvOgXoj0Jo1jA=" crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.1/localforage.min.js" integrity="sha256-eDmtS07BgLF67ARG+XTiimRis9PsnvusL0grvtopb+s=" crossorigin="anonymous")
     script(type="text/javascript" src="./js/stopwatch.js")
-    link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css")
-    link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
-    link(rel="stylesheet" type="text/css" href="./css/style.css")  
-  body.
-    <div id="app" class="container">
-    <div class="title"><h2>Timed 10-Meter Walk Test</h2></div>    
-    <div class="row">
-      <div class="twelve columns">
-        <form>
-          <input placeholder="Enter patient name or id" data-bind="value: newId,  valueUpdate: &quot;afterkeydown&quot;">
-          <button type="submit" class="btn-subtle" data-bind="click:addTest">
-            Add Test
-          </button>
-        </form>
-      </div>
-      <div class="twelve columns">
-        <ul class="fa-ul" data-bind="foreach: tests">
-          <li>
-            <i class="fa-li fa fa-caret-right"></i>
-            <span class="text-id" data-bind="text: id"> </span>
-            [<input type="checkbox" data-bind="checked: isFast"> Check if patient prompted to walk as fast as possible.]
-            <ol data-bind="foreach: trials">
-              <li>
-                <div>
-                  <em>t</em><sub>2m</sub>
-                  <input size="3" class="text-timer" data-bind="value: s"> s <em>t</em><sub>8m</sub>
-                  <input size="3" class="text-timer" data-bind="value: s2"> s
+    script(type="text/babel" src="./js/app.js" defer="defer")    
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous")
+    link(rel="stylesheet" type="text/css" href="./css/style.css")
+  body(id="app")
+    nav(class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top")
+      span(class="navbar-brand") Timed 10-Meter Walk Test
+      form(class="mr-auto")
+        div(class="row")
+          div(class="col")
+            input(placeholder="Enter patient name or id" class="form-control" data-bind="value: newId,  valueUpdate: 'afterkeydown'")
+          div(class="row")
+            button(type="submit" class="btn btn-primary" id="add-button" data-bind="click:addTest") Add Patient
+      button(class="navbar-toggler" data-toggle="collapse" data-target="#menu" data-bind="click:togglePush")
+        span(class="navbar-toggler-icon")
+      div(class="collapse navbar-collapse" id="menu")
+        ul(class="navbar-nav ml-auto")
+          li(class="navbar-item")
+            a(class="nav-link" href="#" data-bind="click:saveViewModel") Save
+          li(class="navbar-item")  
+            a(class="nav-link" href="#" data-toggle="modal" data-target="#settingsModal")
+              i(class="fas fa-cog fa-md")
+    div(class="container-fluid" id="main" style="margin-top:30px; visibility: hidden;", data-bind="attr: { class: adjustTopMargin() ? 'push' : 'recover' }")
+      div(class="row" data-bind="foreach: tests")
+        div(class="col")
+          div(class="card" style="width: 18rem; margin-top: 10px;")
+            div(class="card-header")
+              button(type="button" class="close" data-bind="click: $root.removeTest")
+                span &times;
+              h5(class="card-title" data-bind="text: id")
+            div(class="card-body")
+              div(data-bind="foreach: trials")
+                div.
+                  <div class="row">
+                    <span><em>t</em><sub>2m</sub></span>
+                    <input size="3" class="w-25 form-control text-timer" data-bind="value: s"> <span class="unit-label">s</span> 
+                    <span><em>t</em><sub>12m</sub></span>                    
+                    <input size="3" class="w-25 form-control text-timer" data-bind="value: s2"> <span class="unit-label">s</span>
+                  </div>
                   <div>
-                    <span data-bind="if: state() < 3"><button class="btn-subtle" data-bind="click: nextState, text: stateLabel">Start Timer</button></span>
+                    <span data-bind="if: state() < 3"><button class="btn btn-success" data-bind="click: nextState, text: stateLabel">Start Timer</button></span>
                   </div>                
                   <ul data-bind="if: timeToAmbulate" class="fa-ul">
                     <li><i class="fa-li fa fa-clock-o"></i>
-                      <span><span data-bind="text: timeToAmbulate"> </span> s to ambulate 6 m</span>
+                      <span><span data-bind="text: timeToAmbulate"> </span> s to ambulate 10 m</span>
                     </li>
                   </ul>
-                </div>
-              </li>
-          </ol>
-          </li>
-          <div data-bind="if: isReady">Average time to ambulate 6 m: <span data-bind="text: averageTimeToAmbulate"> </span> s</div>
-          <div data-bind="if: isReady" class="text-narrative">When assessed with the 10-meter walk test, <span data-bind="text: id">the patient</span> had a <span data-bind="text: gaitText"> </span> walking speed of <span data-bind="text: averageGaitSpeed"> </span> m/s today.
-          <div><button class="button-primary" data-bind="attr:{'data-clipboard-text': 'When assessed with the 10-meter walk test, ' + id() + ' had a ' + gaitText() + ' walking speed of ' + averageGaitSpeed() + ' m/s today.'}"><i class="fa fa-clipboard fa-lg"></i> Copy Narrative</button></div>
-          </div>
-        </ul>
-      </div>
-    </div>
-    <div class="text-fineprint"><input type="checkbox" data-bind="checked: displayJSON">Show JSON</div>
-  </div>
-  <div id="snackbar" data-bind="visible: $root.showMessage"><span data-bind="text: $root.showMessage"></span></div>
-  <!----------------------------------->
-  <div id="debug" data-bind="if: displayJSON" class="container">
-    <div class="row">
-      <div class="twelve columns">
-        <textarea id="viewmodel-json" name="debug" data-bind="value: ko.toJSON($root)"></textarea>
-      </div>
-    </div>
-  </div>
+              <div class="text-result" data-bind="if: isReady">Average time to ambulate 10 m: <br /> <span data-bind="text: averageTimeToAmbulate"> </span> s</div>
+              <div data-bind="if: isReady" class="text-narrative">
+                <span class="text-narrative-msg">When assessed with the 10-meter walk test, <span data-bind="text: id">the patient</span> had a <span data-bind="text: gaitText"> </span> walking speed of <span data-bind="text: averageGaitSpeed"> </span> m/s today.</span>
+                <center>
+                  <div class="btn-action btn-block">
+                    <button class="btn btn-dark btn-sm btn-copy" data-bind="attr:{'data-clipboard-text': 'When assessed with the 10-meter walk test, ' + id() + ' had a ' + gaitText() + ' walking speed of ' + averageGaitSpeed() + ' m/s today.'}"><i class="fa fa-clipboard fa-lg"></i> Copy Narrative</button>
+                  </div>
+                  <div class="btn-action">
+                    <button class="btn btn-primary btn-sm btn-block" data-bind="click: postNarrative"><i class="fa fa-paper-plane fa-lg" ></i> Post Narrative</button>
+                  </div>  
+                </center>
+              </div>
+      div(class="row" data-bind="visible: showJSON")
+        div(class="col-6")
+          pre(id="debug-textarea" class="form-control bg-info" type="textarea" data-bind="text: ko.toJSON($root, null, 1)")
+    div(class="modal fade" id="settingsModal" tabindex="-1" role="dialog")
+      div(class="modal-dialog" role="document")
+        div(class="modal-content")
+          div(class="modal-header")
+            h5(class="modal-title" id="settingsModalLabel") Settings
+            button(type="button" class="close" data-dismiss="modal" data-bind="click: saveNarrativePostUrl")
+              span &times;
+          div(class="modal-body")
+            label(for="url") URL
+            input(class="form-control" id="url" placeholder="https://httpstat.us/200" data-bind="value: url")
+            div(class="form-check")
+              input(class="form-check-input" type="checkbox" id="debug" data-bind="checked: showJSON")
+              label(id="label-for-debug" class="form-check-label" for="debug") Show Debug Info
+          div(class="modal-footer")
+            button(type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click: saveNarrativePostUrl") Close & Save
+    span(id="bullpen" style="visibility: hidden")
+      div(id="snackbar" data-bind="visible: $root.showMessage")
+        span(data-bind="text: $root.showMessage")
