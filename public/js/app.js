@@ -109,7 +109,7 @@ window.onload = function() {
 
     this.averageGaitSpeed = ko.computed(() => {
       if (thisTest.averageTimeToAmbulate()) {
-        return (6 / thisTest.averageTimeToAmbulate()).toFixed(2);
+        return (10 / thisTest.averageTimeToAmbulate()).toFixed(2);
       } else {
         return '';
       }
@@ -176,7 +176,7 @@ window.onload = function() {
           break;
         case 1:
           this.state(2);
-          this.stateLabel('Click at 8m Mark');
+          this.stateLabel('Click at 12m Mark');
           break;
         case 2:
           stopwatch.stop();
