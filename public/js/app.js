@@ -24,6 +24,7 @@ window.onload = function() {
         );
         this.tests.sort(sorter);
         this.newId('');
+        this.saveViewModel();
       } else {
         this.showMessage('Blanks and duplicates are not allowed.');
         setTimeout(
@@ -34,6 +35,12 @@ window.onload = function() {
         );
       }
     }.bind(this);
+
+    this.removeTest = function(t) {
+      let newArr = thisViewModel.tests().filter(o => o.id !== t.id);
+      thisViewModel.tests(newArr);
+      this.saveViewModel();
+    };
 
     this.saveViewModel = () => {
       let flattenedTests = thisViewModel.tests().map(t => {
@@ -174,6 +181,7 @@ window.onload = function() {
         case 2:
           stopwatch.stop();
           this.state(3);
+          tests.saveViewModel();
           break;
       }
     };

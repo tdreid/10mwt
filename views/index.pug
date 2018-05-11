@@ -4,14 +4,14 @@ html
     meta(http-equiv="content-type" content="text/html; charset=UTF-8")
     meta(name="robots" content="noindex, nofollow")
     meta(name="googlebot" content="noindex, nofollow")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous")
-    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js")
-    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js")
-    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js")
+    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" integrity="sha256-owX7sroiO/O1a7h3a4X29A1g3QgqdNvijRQ7V5TH45M=" crossorigin="anonymous")
+    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.0/underscore-min.js" integrity="sha256-tr4FvXVZp8nkW7TvW4OYA5KWOs7fc2m5B6LN+AOn1VI=" crossorigin="anonymous")
+    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js" integrity="sha256-mYqjlBuTYmeoEFTjuPCrwns2stAp2HOJyXR5X2xjP70=" crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha256-FiZMk1zgTeujzf/+vomWZGZ9r00+xnGvOgXoj0Jo1jA=" crossorigin="anonymous")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.1/localforage.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.1/localforage.min.js" integrity="sha256-eDmtS07BgLF67ARG+XTiimRis9PsnvusL0grvtopb+s=" crossorigin="anonymous")
     script(type="text/javascript" src="./js/stopwatch.js")
     script(type="text/babel" src="./js/app.js" defer="defer")    
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
@@ -33,16 +33,17 @@ html
           li(class="navbar-item")
             a(class="nav-link" href="#" data-bind="click:saveViewModel") Save
           li(class="navbar-item")  
-            a(class="nav-link" href="#" data-bind="click:clearViewModel") Clear All
-          li(class="navbar-item")  
             a(class="nav-link" href="#" data-toggle="modal" data-target="#settingsModal")
               i(class="fas fa-cog fa-md")
     div(class="container-fluid" id="main" style="margin-top:30px; visibility: hidden;", data-bind="attr: { class: adjustTopMargin() ? 'push' : 'recover' }")
       div(class="row" data-bind="foreach: tests")
         div(class="col")
           div(class="card" style="width: 18rem; margin-top: 10px;")
-            div(class="card-body")
+            div(class="card-header")
+              button(type="button" class="close" data-bind="click: $root.removeTest")
+                span &times;
               h5(class="card-title" data-bind="text: id")
+            div(class="card-body")
               div(data-bind="foreach: trials")
                 div.
                   <div class="row">
@@ -62,12 +63,14 @@ html
               <div class="text-result" data-bind="if: isReady">Average time to ambulate 6 m: <span data-bind="text: averageTimeToAmbulate"> </span> s</div>
               <div data-bind="if: isReady" class="text-narrative">
                 <span class="text-narrative-msg">When assessed with the 10-meter walk test, <span data-bind="text: id">the patient</span> had a <span data-bind="text: gaitText"> </span> walking speed of <span data-bind="text: averageGaitSpeed"> </span> m/s today.</span>
-                <div class="btn-action btn-block">
-                  <button class="btn btn-dark btn-sm btn-copy" data-bind="attr:{'data-clipboard-text': 'When assessed with the 10-meter walk test, ' + id() + ' had a ' + gaitText() + ' walking speed of ' + averageGaitSpeed() + ' m/s today.'}"><i class="fa fa-clipboard fa-lg"></i> Copy Narrative</button>
-                </div>
-                <div class="btn-action">
-                  <button class="btn btn-primary btn-sm btn-block" data-bind="click: postNarrative"><i class="fa fa-paper-plane fa-lg" ></i> Post Narrative</button>
-                </div>                
+                <center>
+                  <div class="btn-action btn-block">
+                    <button class="btn btn-dark btn-sm btn-copy" data-bind="attr:{'data-clipboard-text': 'When assessed with the 10-meter walk test, ' + id() + ' had a ' + gaitText() + ' walking speed of ' + averageGaitSpeed() + ' m/s today.'}"><i class="fa fa-clipboard fa-lg"></i> Copy Narrative</button>
+                  </div>
+                  <div class="btn-action">
+                    <button class="btn btn-primary btn-sm btn-block" data-bind="click: postNarrative"><i class="fa fa-paper-plane fa-lg" ></i> Post Narrative</button>
+                  </div>  
+                </center>
               </div>
       div(class="row" data-bind="visible: showJSON")
         div(class="col-6")
@@ -81,7 +84,7 @@ html
               span &times;
           div(class="modal-body")
             label(for="url") URL
-            input(class="form-control" id="url" placeholder="http://example.com/api/post/narrative" data-bind="value: url")
+            input(class="form-control" id="url" placeholder="https://httpstat.us/200" data-bind="value: url")
             div(class="form-check")
               input(class="form-check-input" type="checkbox" id="debug" data-bind="checked: showJSON")
               label(id="label-for-debug" class="form-check-label" for="debug") Show Debug Info
