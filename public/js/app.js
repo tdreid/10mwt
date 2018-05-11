@@ -39,7 +39,7 @@ window.onload = function() {
     this.removeTest = function(t) {
       let newArr = thisViewModel.tests().filter(o => o.id !== t.id);
       thisViewModel.tests(newArr);
-      this.saveViewModel();
+      thisViewModel.saveViewModel();
     };
 
     this.saveViewModel = () => {
