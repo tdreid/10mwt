@@ -6,3 +6,15 @@
 <p align="center">
   <img src="https://firebasestorage.googleapis.com/v0/b/inaptpi.appspot.com/o/img-for-10mwt%2F10mwt-screenshot.png?alt=media&token=ceb317d1-f7de-47b0-8a66-b61a1a43784f">
 </p>
+
+## Installation
+
+Requires — Node, npm, git
+
+```
+$ git clone https://github.com/tdreid/10mwt.git`
+
+$ cd 10mwt && npm install
+
+$ DEBUG=myapp:* npm start
+``` 
