@@ -16,5 +16,5 @@ $ git clone https://github.com/tdreid/10mwt.git`
 
 $ cd 10mwt && npm install
 
-$ DEBUG=myapp:* npm start
+$ DEBUG=10mwt:* npm start
 ``` 
