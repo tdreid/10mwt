@@ -9,9 +9,9 @@
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "pug": "^2.0.3",
     "serve-favicon": "~2.4.5"
   },
   "description": "## A simple free tool to conduct the [Timed 10 Meter Walk Test](http://www.physio-pedia.com/10_Metre_Walk_Test) in a browser or on a mobile device. ## [Click here for a working example.](https://ten-mwt.herokuapp.com/) ## This is what it looks like: <p align=\"center\">   <img src=\"https://inaptpi.firebaseapp.com/img-for-10mwt/10mwt-screenshot.png\"> </p>",
